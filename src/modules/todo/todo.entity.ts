@@ -6,6 +6,9 @@ export class Todo {
     id: number;
 
     @Column()
+    content: string; 
+
+    @Column()
     name: string;
 
     @Column()
