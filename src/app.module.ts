@@ -4,10 +4,13 @@ import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './modules/user/user.entity';
+import { TodoModule } from './modules/todo/todo.module';
+import { Todo } from './modules/todo/todo.entity';
 
 @Module({
   imports: [
     UserModule,
+    TodoModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -15,10 +18,9 @@ import { User } from './modules/user/user.entity';
       username: 'root',
       password: '',
       database: 'nestjs01',
-      entities: [User],
-      synchronize: true,
-    })
-
+      entities: [User, Todo], // Thêm cả User và Todo vào đây
+      synchronize: true, // Tự động đồng bộ bảng (chỉ dùng trong môi trường phát triển)
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
